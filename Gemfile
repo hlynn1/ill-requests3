@@ -23,7 +23,7 @@ end
 
 gem 'jquery-rails', '2.0.2'
 
-gem 'pg'
+gem 'pg', '0.12.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
