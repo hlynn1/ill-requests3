@@ -1,0 +1,45 @@
+<% provide(:title, 'About') %>
+<h1>About This App</h1>
+
+<p>
+This is a home-grown database for tracking interlibrary loan requests made by customers of the Brown County Library in Green Bay, WI.
+</p>
+
+<p>
+The requests themselves are handled by our regional library system, the Nicolet Federated Library System (NFLS), via OCLC FirstSearch Resource Sharing. Since NFLS also processes interlibrary loans for other public libraries in our system, Resource Sharing isn't a good way for us to track requests among our ten library locations, or to get useful statistics about the number and type of items we are borrowing from other libraries on behalf of our customers. This database replaces the paper-based request tracking system in place as of August 2012. Requests are still passed to NFLS for processing.
+</p>
+
+<h2>Planned Functionality</h2>
+
+<h3>Phase 1</h3>
+
+	<ul>
+    	<li><strong>New Request</strong>: basic request entry, checking against existing customers, adding an activity with a submitted status</li>
+    	<li><strong>Receive Item</strong>: add due date, local itemID number for checkout</li>
+    	<li><strong>Return Item</strong></li>
+    	<li><strong>View Requests</strong>: basic queries based on pre-defined parameters</li>
+    	<li><strong>Cancel Request</strong></li>
+	</ul>
+
+<h3>Phase 2</h3>
+
+<ul>
+	<li><strong>New Request</strong>: pull bibliographic data from WorldCat via API; bookmarklet to launch new request from WorldCat</li>
+    <li><strong>Receive Item</strong>: print customer label/bookstrap with barcodes for request/OCLC#, BCL itemID</li>
+    <li><strong>View Requests</strong>: batch activity updates (closed, etc.)</li>
+    <li><strong>Cancel Request</strong>: launch email notice of cancellation to customer</li>
+</ul>
+
+<h3>Phase 3</h3>
+
+<ul>
+	<li><strong>New Request</strong>: send submitted requests to NFLS via batch or individual email; allow selector to divert requests to purchase review before being submitted; pull customer data from Symphony via API/Web Services</li>
+</ul>
+
+<h3>Phase 4</h3>
+
+<ul>
+	<li><strong>Receive Item</strong>: use Symphony API to automate creating temporary item, placing and trapping hold</li>
+    <li><strong>Return Item</strong>: use Symphony API to automate discard of BCL itemID</li>
+</ul>
+
