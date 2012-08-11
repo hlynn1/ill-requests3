@@ -1,0 +1,57 @@
+<%= form_for(@request) do |f| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :customer_id %><br />
+    <%= f.text_field :customer_id %>
+  </div>
+  <div class="field">
+    <%= f.label :oclcnum %><br />
+    <%= f.text_field :oclcnum %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br />
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :pub %><br />
+    <%= f.text_field :pub %>
+  </div>
+  <div class="field">
+    <%= f.label :locationplaced %><br />
+    <%= f.text_field :locationplaced %>
+  </div>
+  <div class="field">
+    <%= f.label :location_id %><br />
+    <%= f.text_field :location_id %>
+  </div>
+  <div class="field">
+    <%= f.label :duedate %><br />
+    <%= f.text_field :duedate %>
+  </div>
+  <div class="field">
+    <%= f.label :bclitem %><br />
+    <%= f.text_field :bclitem %>
+  </div>
+  <div class="field">
+    <%= f.label :dateplaced %><br />
+    <%= f.date_select :dateplaced %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

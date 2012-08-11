@@ -1,0 +1,41 @@
+<h1>Listing requests</h1>
+
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Oclcnum</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Pub</th>
+    <th>Locationplaced</th>
+    <th>Location</th>
+    <th>Duedate</th>
+    <th>Bclitem</th>
+    <th>Dateplaced</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @requests.each do |request| %>
+  <tr>
+    <td><%= request.customer_id %></td>
+    <td><%= request.oclcnum %></td>
+    <td><%= request.title %></td>
+    <td><%= request.author %></td>
+    <td><%= request.pub %></td>
+    <td><%= request.locationplaced %></td>
+    <td><%= request.location_id %></td>
+    <td><%= request.duedate %></td>
+    <td><%= request.bclitem %></td>
+    <td><%= request.dateplaced %></td>
+    <td><%= link_to 'Show', request %></td>
+    <td><%= link_to 'Edit', edit_request_path(request) %></td>
+    <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Request', new_request_path %>

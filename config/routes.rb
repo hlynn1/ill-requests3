@@ -1,4 +1,6 @@
 IllRequests::Application.routes.draw do
+  resources :requests
+
   resources :customers
 
   # The priority is based upon order of creation:
