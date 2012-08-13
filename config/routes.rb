@@ -1,4 +1,6 @@
 IllRequests::Application.routes.draw do
+  get "users/new"
+
   get "activities/new"
   get "locations/new"
 
@@ -9,9 +11,7 @@ IllRequests::Application.routes.draw do
 
   match '/return', to: 'activities#return'
 
-  resources :requests
-
-  resources :customers
+  resources :requests, :customers, :statuses, :activities, :locations
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
