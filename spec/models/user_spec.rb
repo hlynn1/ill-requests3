@@ -2,12 +2,13 @@ require 'spec_helper'
 
 describe User do
   before do
-    @user = User.new(name: "Example User", email: "user@example.com", 
+    @user = User.new(locationcode: "ABC", name: "Example User", email: "user@example.com", 
                       password: "foobar", password_confirmation: "foobar")
   end
 
   subject { @user }
   
+  it { should respond_to(:locationcode) }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
@@ -26,6 +27,11 @@ describe User do
 
   describe "when email is not present" do
     before { @user.email = " " }
+    it { should_not be_valid }
+  end
+  
+  describe "when location is not present" do
+    before { @user.locationcode = " " }
     it { should_not be_valid }
   end
 
@@ -65,7 +71,7 @@ describe User do
     
   describe "return value of authentication method" do
     before { @user.save }
-    let(:found_user) { User.find_by_email(@user.email) }
+    let(:found_user) { User.find_by_locationcode(@user.locationcode) }
     
     describe "with valid password" do
       it { should == found_user.authenticate(@user.password) }
