@@ -1,4 +1,7 @@
-<h1>Listing requests</h1>
+<% provide(:title, 'Requests')%>
+<h1>Requests</h1>
+
+<%# will_paginate %>
 
 <table>
   <tr>
@@ -29,9 +32,6 @@
     <td><%= request.duedate %></td>
     <td><%= request.bclitem %></td>
     <td><%= request.dateplaced %></td>
-    <td><%= link_to 'Show', request %></td>
-    <td><%= link_to 'Edit', edit_request_path(request) %></td>
-    <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
@@ -39,3 +39,5 @@
 <br />
 
 <%= link_to 'New Request', new_request_path %>
+
+<%# will_paginate %>

@@ -10,4 +10,15 @@ FactoryGirl.define do
       admin true
     end
   end
+  
+  factory :request do
+    sequence(:customer_id)
+    oclcnum 100000
+    title "Book Title"
+    locationplaced "QXI"
+    duedate "2012-09-01"
+    location_id 1
+    bclitem 39878012345678
+  end
+  
 end
