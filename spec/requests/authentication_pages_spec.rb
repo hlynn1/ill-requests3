@@ -27,7 +27,6 @@ describe "AuthenticationPages" do
       before { valid_signin(user) }
     
       it { should have_selector('title', text: user.name) }
-      it { should have_link('Your Info', href: user_path(user)) }
       it { should have_link('Sign Out', href: signout_path) }
       it { should_not have_link('Sign In', href: signin_path) }
       

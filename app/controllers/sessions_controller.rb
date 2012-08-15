@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       redirect_to user
     else
       flash.now[:error] = 'Invalid location/password combination'
+      sign_out
       render 'new'
     end
   end
