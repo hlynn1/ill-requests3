@@ -11,20 +11,24 @@ describe "request pages" do
     before(:all) { 40.times { FactoryGirl.create(:request) } }
     after(:all) { Request.delete_all }
     
-    it { should have_selector('title', text: "Requests") }
-    it { should have_selector('h1', text: "Requests") }
+    before { visit requests_path }
     
-#   describe "pagination" do
+    it { should have_selector('title', text: 'Requests') }
+    it { should have_selector('h1', text: 'Requests') }
+    it { should have_link('Details', href: request_path(request)) }
+    it { should have_link('Update', href: edit_request_path(request)) }
+    
+    describe "pagination" do
 
-#      it { should have_selector('div.pagination') }
+      it { should have_selector('div.pagination') }
 
-#      it "should list each request" do
-#        Request.paginate(page: 1).each do |request|
-#          page.should have_selector('td', text: request.title)
-#        end
-#      end
+      it "should list each request" do
+        Request.paginate(page: 1).each do |request|
+          page.should have_selector('td', text: request.title)
+        end
+      end
 
-#    end
+    end
   end
   
 end

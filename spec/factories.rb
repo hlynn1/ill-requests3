@@ -20,5 +20,12 @@ FactoryGirl.define do
     location_id 1
     bclitem 39878012345678
   end
+ 
+  factory :customer do
+    sequence(:userid) { |n| "90001234#{n}" }
+    firstname "John"
+    lastname "Smith"
+    email "customer@example.com"
+  end
   
 end

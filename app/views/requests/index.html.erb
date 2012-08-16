@@ -1,21 +1,15 @@
 <% provide(:title, 'Requests')%>
 <h1>Requests</h1>
 
-<%# will_paginate %>
+<%= link_to 'New Request', new_request_path %>
 
 <table>
   <tr>
     <th>Customer</th>
-    <th>Oclcnum</th>
     <th>Title</th>
-    <th>Author</th>
-    <th>Pub</th>
-    <th>Locationplaced</th>
     <th>Location</th>
     <th>Duedate</th>
     <th>Bclitem</th>
-    <th>Dateplaced</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -23,21 +17,16 @@
 <% @requests.each do |request| %>
   <tr>
     <td><%= request.customer_id %></td>
-    <td><%= request.oclcnum %></td>
     <td><%= request.title %></td>
-    <td><%= request.author %></td>
-    <td><%= request.pub %></td>
-    <td><%= request.locationplaced %></td>
     <td><%= request.location_id %></td>
     <td><%= request.duedate %></td>
     <td><%= request.bclitem %></td>
-    <td><%= request.dateplaced %></td>
+    <td><%= link_to 'Details', request_path(request) %></td>
+    <td><%= link_to 'Update', edit_request_path(request) %></td>
   </tr>
 <% end %>
+
+
 </table>
+<%= will_paginate %>
 
-<br />
-
-<%= link_to 'New Request', new_request_path %>
-
-<%# will_paginate %>

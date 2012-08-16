@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Request do
+  let(:user) { FactoryGirl.create(:user) }
   before do
-    @request = Request.new(customer_id: 1, oclcnum: 225679134, title: "A Great Book", 
+    @request = Request.new(customer_id: user.id, oclcnum: 225679134, title: "A Great Book", 
                       author: "Smith, John", pub: "New York : 1999", locationplaced: "LH", location_id: 10, 
                       duedate: "2012-09-01", bclitem: 39878012345678)
   end
@@ -22,7 +23,7 @@ describe Request do
   it { should be_valid }
   
   describe "when customer id is not present" do
-    before { @request.customer_id = "" }
+    before { @request.customer_id = nil }
     it { should_not be_valid }
   end
 
