@@ -1,15 +1,15 @@
 <% provide(:title, 'Requests')%>
 <h1>Requests</h1>
 
-<%= link_to 'New Request', new_request_path %>
+<%= link_to 'New Request', new_request_path, class: "btn btn-primary" %>
 
-<table>
+<table class="table">
   <tr>
     <th>Customer</th>
     <th>Title</th>
-    <th>Location</th>
-    <th>Duedate</th>
-    <th>Bclitem</th>
+    <th>Pickup Location</th>
+    <th>Due Date</th>
+    <th>BCL Item ID</th>
     <th></th>
     <th></th>
   </tr>
@@ -21,8 +21,8 @@
     <td><%= request.location_id %></td>
     <td><%= request.duedate %></td>
     <td><%= request.bclitem %></td>
-    <td><%= link_to 'Details', request_path(request) %></td>
-    <td><%= link_to 'Update', edit_request_path(request) %></td>
+    <td><%= link_to 'Details', request_path(request), class: "btn" %></td>
+    <td><%= link_to 'Update', edit_request_path(request), class: "btn" %></td>
   </tr>
 <% end %>
 

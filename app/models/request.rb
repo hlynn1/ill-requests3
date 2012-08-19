@@ -3,7 +3,9 @@ class Request < ActiveRecord::Base
                   :locationplaced, :oclcnum, :pub, :title
   
   belongs_to :customer
+  belongs_to :location
   has_many :activities
+  has_many :statuses, :through => :activities
   
   validates :customer_id, presence: true
   validates :title, presence: true
