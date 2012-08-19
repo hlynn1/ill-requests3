@@ -28,4 +28,9 @@ FactoryGirl.define do
     email "customer@example.com"
   end
   
+  factory :activity do
+    status_id 2
+    request
+  end
+  
 end

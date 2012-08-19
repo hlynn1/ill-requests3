@@ -19,6 +19,7 @@ describe Request do
   it { should respond_to(:location_id) }
   it { should respond_to(:duedate) }
   it { should respond_to(:bclitem) }
+  it { should respond_to(:activities) }
 
   it { should be_valid }
   
@@ -46,21 +47,19 @@ describe Request do
     before { @request.locationplaced = "a" * 4 }
     it { should_not be_valid }
   end
-      
-#  describe "return value of authentication method" do
-#    before { @user.save }
-#    let(:found_user) { User.find_by_locationcode(@user.locationcode) }
-#    
-#    describe "with valid password" do
-#      it { should == found_user.authenticate(@user.password) }
-#    end
-#    
-#    describe "with invalid password" do
-#      let(:user_for_invalid_password) { found_user.authenticate("invalid") }
-#      
-#      it { should_not == user_for_invalid_password }
-#      specify { user_for_invalid_password.should be_false }
-#    end
-#  end
+
+  describe "activity associations" do
+    before { @request.save }
+    let!(:older_activity) do
+      FactoryGirl.create(:activity, request: @request, status_id: 1)
+    end
+    let!(:newer_activity) do
+      FactoryGirl.create(:activity, request: @request, status_id: 2)
+    end
+    
+    it "should have the right activities in the right order" do
+      @request.activities.should == [newer_activity, older_activity]
+    end
+  end
 
 end

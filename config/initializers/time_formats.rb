@@ -1,0 +1,1 @@
+Date::DATE_FORMATS[:us_date] = "%m-%d-%Y"

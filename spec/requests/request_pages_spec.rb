@@ -7,7 +7,7 @@ describe "request pages" do
   describe "index" do
     
     let(:request) { FactoryGirl.create(:request) }
-    
+
     before(:all) { 40.times { FactoryGirl.create(:request) } }
     after(:all) { Request.delete_all }
     
@@ -15,8 +15,8 @@ describe "request pages" do
     
     it { should have_selector('title', text: 'Requests') }
     it { should have_selector('h1', text: 'Requests') }
-    it { should have_link('Details', href: request_path(request)) }
-    it { should have_link('Update', href: edit_request_path(request)) }
+    it { should have_link('Details', href: request_path(Request.first)) }
+    it { should have_link('Update', href: edit_request_path(Request.first)) }
     
     describe "pagination" do
 
@@ -31,6 +31,21 @@ describe "request pages" do
     end
   end
   
+  describe "request details page" do
+    let(:request) { FactoryGirl.create(:request) }
+    let!(:a1) { FactoryGirl.create(:activity, request: request, status_id: 2)  }
+    let!(:a2) { FactoryGirl.create(:activity, request: request, status_id: 3) }
+    
+    before { visit request_path(request) }
+    
+    it { should have_selector('h1', text: "Request Details") }
+    it { should have_selector('title', text: "Request Details") }
+    
+    describe "activities" do
+      it { should have_content(a1.status_id) }
+      it { should have_content(a2.status_id) }
+    end
+  end
 end
 
 

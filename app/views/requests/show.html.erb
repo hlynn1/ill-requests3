@@ -1,55 +1,30 @@
+<% provide(:title, "Request Details") %>
+<h1>Request Details</h1>
 <p id="notice"><%= notice %></p>
+<div class="row">	
+	<aside>
+	</aside>
+	<div class="span8">
+		<p><b>Customer:</b> <%= @request.customer_id %></p>
+		<p><b>OCLC Number:</b> <%= @request.oclcnum %></p>
+		<p><b>Title:</b> <%= @request.title %></p>
+		<p><b>Author:</b> <%= @request.author %></p>
+		<p><b>Publication:</b> <%= @request.pub %></p>
+		<p><b>Location Placed:</b> <%= @request.locationplaced %></p>
+		<p><b>Pickup Location:</b> <%= @request.location_id %></p>
+		<p><b>Due Date:</b> <%= @request.duedate %></p>
+		<p><b>BCL Item ID:</b> <%= @request.bclitem %></p>
 
-<p>
-  <b>Customer:</b>
-  <%= @request.customer_id %>
-</p>
-
-<p>
-  <b>Oclcnum:</b>
-  <%= @request.oclcnum %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @request.title %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%= @request.author %>
-</p>
-
-<p>
-  <b>Pub:</b>
-  <%= @request.pub %>
-</p>
-
-<p>
-  <b>Locationplaced:</b>
-  <%= @request.locationplaced %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @request.location_id %>
-</p>
-
-<p>
-  <b>Duedate:</b>
-  <%= @request.duedate %>
-</p>
-
-<p>
-  <b>Bclitem:</b>
-  <%= @request.bclitem %>
-</p>
-
-<p>
-  <b>Dateplaced:</b>
-  <%= @request.dateplaced %>
-</p>
-
+		<div class="span6 offset3">
+		<% if @request.activities.any? %>
+			<h3>Status Updates</h3>
+			<ol class="activities">
+				<%= render @activities %>
+			</ol>
+		<% end %>
+		</div>
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>
