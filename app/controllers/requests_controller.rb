@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
-
+  
   def index
-    @requests = Request.paginate(page: params[:page])
+    @requests = Request.order(params[:sort]).paginate(page: params[:page])
   end
 
   def show

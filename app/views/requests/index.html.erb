@@ -5,11 +5,11 @@
 
 <table class="table">
   <tr>
-    <th>Customer</th>
-    <th>Title</th>
-    <th>Pickup Location</th>
-    <th>Due Date</th>
-    <th>BCL Item ID</th>
+    <th><%= link_to "Customer", sort: "customer_id" %></th>
+    <th><%= link_to "Title", sort: "title" %></th>
+    <th><%= link_to "Location Placed", sort: "location_id" %></th> 
+    <th><%= link_to "Due Date", sort: "duedate" %></th>
+    <th><%= link_to "Item ID", sort: "bclitem" %></th>
     <th></th>
     <th></th>
   </tr>
