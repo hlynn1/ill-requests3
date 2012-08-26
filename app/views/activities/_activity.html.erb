@@ -1,4 +1,4 @@
 <li>
 	<span class="status"><%= activity.status.name %></span>
-	<span class="timestamp"><%= activity.created_at %></span>
+	<span class="timestamp"><%= activity.created_at.strftime("%D, %l:%M %P") %></span>
 </li>

@@ -50,15 +50,15 @@ describe Request do
 
   describe "activity associations" do
     before { @request.save }
-    let!(:older_activity) do
-      FactoryGirl.create(:activity, request: @request, status_id: 1)
-    end
     let!(:newer_activity) do
       FactoryGirl.create(:activity, request: @request, status_id: 2)
     end
+    let!(:older_activity) do
+      FactoryGirl.create(:activity, request: @request, status_id: 1)
+    end
     
     it "should have the right activities in the right order" do
-      @request.activities.should == [newer_activity, older_activity]
+      @request.activities.should == [older_activity, newer_activity]
     end
   end
 

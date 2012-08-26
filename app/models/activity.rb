@@ -4,5 +4,5 @@ class Activity < ActiveRecord::Base
   belongs_to :status
   
   validates :request_id, presence: true
-  default_scope order: 'activities.status_id DESC'
+  default_scope order: 'activities.status_id ASC'
 end

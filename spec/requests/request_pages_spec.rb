@@ -33,8 +33,10 @@ describe "request pages" do
   
   describe "request details page" do
     let(:request) { FactoryGirl.create(:request) }
-    let!(:a1) { FactoryGirl.create(:activity, request: request, status_id: 2)  }
-    let!(:a2) { FactoryGirl.create(:activity, request: request, status_id: 3) }
+    let!(:s1) { FactoryGirl.create(:status) }
+    let!(:s2) { FactoryGirl.create(:status) }
+    let!(:a1) { FactoryGirl.create(:activity, request: request, status_id: 2) }
+    let!(:a2) { FactoryGirl.create(:activity, request: request, status_id: 1) }
     
     before { visit request_path(request) }
     
@@ -42,8 +44,8 @@ describe "request pages" do
     it { should have_selector('title', text: "Request Details") }
     
     describe "activities" do
-      it { should have_content(a1.status_id) }
-      it { should have_content(a2.status_id) }
+      it { should have_content(a1.status.name) }
+      it { should have_content(a2.status.name) }
     end
   end
 end

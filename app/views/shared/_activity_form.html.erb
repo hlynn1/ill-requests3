@@ -1,0 +1,8 @@
+<%= form_for(@activity) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.label :status_id, "Status" %>
+		<%= f.text_field :status_id %>
+	</div>
+	<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+<% end %>
