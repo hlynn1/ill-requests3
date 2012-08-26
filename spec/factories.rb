@@ -29,8 +29,12 @@ FactoryGirl.define do
   end
   
   factory :activity do
-    status_id 2
+    status_id 1
     request
+  end
+  
+  factory :status do
+    name "Status"
   end
   
 end

@@ -34,11 +34,9 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if @request.update_attributes(params[:request])
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to @request, notice: 'Request was successfully updated.'
       else
-        format.html { render action: "edit" }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+        render action: "edit"
       end
     end
   end

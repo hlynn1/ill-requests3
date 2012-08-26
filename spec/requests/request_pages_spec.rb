@@ -33,8 +33,9 @@ describe "request pages" do
   
   describe "request details page" do
     let(:request) { FactoryGirl.create(:request) }
-    let!(:a1) { FactoryGirl.create(:activity, request: request, status_id: 2)  }
-    let!(:a2) { FactoryGirl.create(:activity, request: request, status_id: 3) }
+    let!(:a1) { FactoryGirl.create(:activity, request: request, status_id: 1) }
+    let!(:a2) { FactoryGirl.create(:activity, request: request, status_id: 1) }
+    let!(:status) { FactoryGirl.create(:status) }
     
     before { visit request_path(request) }
     
