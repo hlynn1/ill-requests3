@@ -11,6 +11,7 @@ module SessionsHelper
   
   def current_user=(user)
     @current_user = user
+    @current_location = @current_user.locationcode
   end
   
   def current_user
@@ -23,6 +24,7 @@ module SessionsHelper
 
   def sign_out
     self.current_user = nil
+    @current_location = nil
     cookies.delete(:remember_token)
   end
 

@@ -2,12 +2,12 @@
 <h1>Requests</h1>
 
 <%= link_to 'New Request', new_request_path, class: "btn btn-primary" %>
-
+<%= @requests.count %> requests
 <table class="table">
   <tr>
     <th><%= link_to "Customer", sort: "customer_id" %></th>
     <th><%= link_to "Title", sort: "title" %></th>
-    <th><%= link_to "Location Placed", sort: "location_id" %></th> 
+    <th><%= link_to "Location Placed", sort: "locationplaced" %></th> 
     <th><%= link_to "Due Date", sort: "duedate" %></th>
     <th><%= link_to "Item ID", sort: "bclitem" %></th>
     <th></th>
@@ -16,9 +16,9 @@
 
 <% @requests.each do |request| %>
   <tr>
-    <td><%= request.customer_id %></td>
+    <td><%= link_to request.customer.full_name, customer_path(request.customer_id) %></td>
     <td><%= request.title %></td>
-    <td><%= request.location_id %></td>
+    <td><%= request.locationplaced %></td>
     <td><%= request.duedate %></td>
     <td><%= request.bclitem %></td>
     <td><%= link_to 'Details', request_path(request), class: "btn" %></td>

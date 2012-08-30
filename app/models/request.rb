@@ -7,6 +7,8 @@ class Request < ActiveRecord::Base
   has_many :activities
   has_many :statuses, :through => :activities
   
+  accepts_nested_attributes_for :activities
+  
   validates :customer_id, presence: true
   validates :title, presence: true
   validates :locationplaced, length: { maximum: 3 }

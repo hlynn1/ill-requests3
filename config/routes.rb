@@ -2,13 +2,14 @@ IllRequests::Application.routes.draw do
 
   root to: 'static_pages#home'
   
-  resources :requests, :customers, :statuses, :activities, :locations, :users
+  resources :customers, :statuses, :activities, :locations, :users
   
   resources :sessions, only: [:new, :create, :destroy]
   
   resources :requests do
     resources :statuses, :activities
     resource :customers
+    put 'receive', :on => :member
   end
   
   match '/help', to: 'static_pages#help'
@@ -19,6 +20,7 @@ IllRequests::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   
   match '/return', to: 'activities#return'
+  
 
 
   # The priority is based upon order of creation:

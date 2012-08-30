@@ -3,9 +3,10 @@ require 'spec_helper'
 describe Activity do
 
   let(:request) { FactoryGirl.create(:request) }
-  before { @activity = request.activities.build(status_id: 2) }
+  let(:status) { FactoryGirl.create(:status) }
+  let(:activity) { request.activities.build(status_id: status.id) }
   
-  subject { @activity }
+  subject { activity }
   
   it { should respond_to(:status_id) }
   it { should respond_to(:request_id) }

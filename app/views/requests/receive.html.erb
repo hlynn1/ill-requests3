@@ -1,0 +1,40 @@
+<% provide(:title, "Receive Item") %>
+<h1>Receive Item</h1>
+<p id="notice"><%= notice %></p>
+<div class="row">	
+	<aside>
+	</aside>
+		<div class="span8">
+		<%= form_tag receive_(@request) do |f| %>
+			<p><b>Customer:</b> <%= @request.customer_id %></p>
+			<p><b>OCLC Number:</b> <%= @request.oclcnum %></p>
+			<p><b>Title:</b> <%= @request.title %></p>
+			<p><b>Author:</b> <%= @request.author %></p>
+			<p><b>Publication:</b> <%= @request.pub %></p>
+			<p><b>Location Placed:</b> <%= @request.locationplaced %></p>
+			<p><b>Pickup Location:</b> <%= @request.location_id %></p>
+			<p><b>Due Date:</b> <%= f.date_select :duedate %></p>
+			<p><b>BCL Item ID:</b> <%= f.text_field :bclitem %></p>
+
+			<div class="offset2">
+			<% if @request.activities.any? %>
+				<h3>Status Updates</h3>
+				<ol class="activities">
+					<%= render @activities %>
+				</ol>
+			<% end %>
+			</div>
+			  <%= f.fields_for :activities do |ff| %>
+				<div>
+				  <%= ff.hidden_field :status_id, :value => 3 %>
+				</div>
+			  <% end %>
+			  <div class="actions">
+				<%= f.submit "Receive Item", class: "btn" %>
+			  </div>
+		<% end %>
+		</div>
+</div>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>
