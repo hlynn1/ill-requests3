@@ -1,7 +1,9 @@
 <% provide(:title, 'Requests')%>
-<h1><%= session[:current_location] %> Requests</h1>
+<h1>All Requests</h1>
 
 <%= link_to 'New Request', new_request_path, class: "btn btn-primary" %>
 <%= @requests.count %> requests
-<%= link_to 'View All Requests', all_requests_path %>
+	<%# if session[:current_location]? %>
+		<%#= link_to 'View Your Requests', requests_path %>
+	<%# end %>
 <%= render 'list' %>

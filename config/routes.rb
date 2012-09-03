@@ -10,6 +10,7 @@ IllRequests::Application.routes.draw do
     resources :statuses, :activities
     resource :customers
     put 'receive', :on => :member
+    get 'all', :on => :collection
   end
   
   match '/help', to: 'static_pages#help'

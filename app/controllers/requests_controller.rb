@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   
   def index
-    @requests = Request.order(params[:sort]).paginate(page: params[:page])
+    @requests = Request.where(:locationplaced => session[:current_location]).order(params[:sort]).paginate(page: params[:page])
   end
 
   def all
@@ -14,11 +14,15 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = Request.new
+    @default_location = Location.find_by_code(session[:current_location])
+    @request = Request.new(:locationplaced => session[:current_location], 
+            :location_id => @default_location.id)
+    @locations = Location.all
   end
 
   def edit
     @request = Request.find(params[:id])
+    @locations = Location.all
   end
   
   def receive
@@ -32,6 +36,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(params[:request])
     if @request.save
+      Activity.create!(:request_id => @request.id, :status_id => 1)
       redirect_to @request, notice: 'Request was successfully created.'
     else
       render action: "new"

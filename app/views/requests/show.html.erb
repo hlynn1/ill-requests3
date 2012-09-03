@@ -5,15 +5,16 @@
 	<aside>
 	</aside>
 	<div class="span8">
-		<p><b>Customer:</b> <%= @request.customer_id %></p>
+		<p><b>Customer:</b> <%= @request.customer.full_name %>, <%= link_to @request.customer.userid, customer_path(@request.customer_id) %></p>
 		<p><b>OCLC Number:</b> <%= @request.oclcnum %></p>
 		<p><b>Title:</b> <%= @request.title %></p>
 		<p><b>Author:</b> <%= @request.author %></p>
 		<p><b>Publication:</b> <%= @request.pub %></p>
 		<p><b>Location Placed:</b> <%= @request.locationplaced %></p>
-		<p><b>Pickup Location:</b> <%= @request.location_id %></p>
+		<p><b>Pickup Location:</b> <%= @request.location.code %></p>
 		<p><b>Due Date:</b> <%= @request.duedate %></p>
 		<p><b>BCL Item ID:</b> <%= @request.bclitem %></p>
+		<p><b>Current Status: </b> <%= @request.current_status(@request) %></p>
 
 		<div class="offset2">
 		<% if @request.activities.any? %>

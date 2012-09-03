@@ -33,11 +33,11 @@
   </div>
   <div class="field">
     <%= f.label :locationplaced %><br />
-    <%= f.text_field :locationplaced %>
+    <%= collection_select(:request, :locationplaced, @locations, :code, :code) %>
   </div>
   <div class="field">
     <%= f.label :location_id %><br />
-    <%= f.text_field :location_id %>
+    <%= collection_select(:request, :location_id, @locations, :id, :code) %>
   </div>
   <div class="field">
     <%= f.label :duedate %><br />
