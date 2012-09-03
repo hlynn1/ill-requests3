@@ -14,7 +14,6 @@
 		<p><b>Pickup Location:</b> <%= @request.location.code %></p>
 		<p><b>Due Date:</b> <%= @request.duedate %></p>
 		<p><b>BCL Item ID:</b> <%= @request.bclitem %></p>
-		<p><b>Current Status: </b> <%= @request.current_status(@request) %></p>
 
 		<div class="offset2">
 		<% if @request.activities.any? %>
@@ -28,4 +27,7 @@
 </div>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Receive', receive_request_path(@request), method: "put" %> |
+<%= link_to	'Return', request_activities_path(@request, :new_status_id => 4), method: "post" %> | 
+<%= link_to 'Cancel', request_activities_path(@request, :new_status_id => 6), method: "post" %> |
 <%= link_to 'Back', requests_path %>

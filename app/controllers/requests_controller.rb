@@ -28,15 +28,15 @@ class RequestsController < ApplicationController
   def receive
     @request = Request.find(params[:id])
     @activities = @request.activities.all
-    @request.update_attributes(params[:bclitem][:duedate])
-    flash[:notice] = "Received!"
-    redirect_to requests_path
+#    @request.update_attributes(params[:bclitem][:duedate])
+#    flash[:notice] = "Received!"
+#    redirect_to requests_path
   end
 
   def create
     @request = Request.new(params[:request])
     if @request.save
-      Activity.create!(:request_id => @request.id, :status_id => 1)
+      update_status(@request, 1)
       redirect_to @request, notice: 'Request was successfully created.'
     else
       render action: "new"
@@ -45,7 +45,10 @@ class RequestsController < ApplicationController
 
   def update
     @request = Request.find(params[:id])
-    if @request.update(params[:request])
+    if @request.update_attributes(params[:request])
+      unless params[:new_status_id].blank?
+        update_status(@request, params[:new_status_id])
+      end
       redirect_to @request, notice: 'Request was successfully updated.'
     else
       render action: "edit"
