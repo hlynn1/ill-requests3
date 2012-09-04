@@ -10,15 +10,15 @@
   </tr>
 
 <% @requests.each do |request| %>
-  <tr>
-    <td><%= link_to request.customer.full_name, customer_path(request.customer_id) %></td>
-    <td><%= link_to request.title, request_path(request) %></td>
-    <td><%= request.locationplaced %></td>
-    <td><%= request.current_status(request) %></td>
-    <td><%= request.duedate %></td>
-    <td><%= link_to 'Receive', receive_request_path(request), method: "put", class: "btn btn-small" %></td>
-    <td><%= link_to 'Return', request_activities_path(request, :new_status_id => 4), method: "post", class: "btn btn-small" %></td>
-  </tr>
+	<tr>
+		<td><%= link_to request.customer.full_name, customer_path(request.customer_id) %></td>
+		<td><%= link_to request.title, request_path(request) %></td>
+		<td><%= request.locationplaced %></td>
+		<td><%= request.current_status(request) %></td>
+		<td><%= request.duedate %></td>
+		<td><%= link_to 'Receive', receive_request_path(request), method: "put", class: "btn btn-small" %></td>
+		<td><%= link_to 'Return', request_activities_path(request, :new_status_id => 4), method: "post", class: "btn btn-small" %></td>
+	</tr>
 <% end %>
 
 

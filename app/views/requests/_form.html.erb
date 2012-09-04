@@ -11,46 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :customer_id %><br />
-    <%= f.text_field :customer_id %>
-  </div>
-  <div class="field">
-    <%= f.label :oclcnum %><br />
-    <%= f.text_field :oclcnum %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
-  </div>
-  <div class="field">
-    <%= f.label :pub %><br />
-    <%= f.text_field :pub %>
-  </div>
-  <div class="field">
-    <%= f.label :locationplaced %><br />
+		
+    <%= f.label :customer_id, "Customer" %>
+    <%= f.text_field :customer_id, class: "span2" %>
+
+    <%= f.label :oclcnum, "OCLC Number" %>
+    <%= f.text_field :oclcnum, class: "span2" %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "span4" %>
+
+    <%= f.label :author %>
+    <%= f.text_field :author, class: "span4" %>
+
+    <%= f.label :pub, "Publication" %>
+    <%= f.text_field :pub, class: "span4" %>
+
+		<%= f.label :locationplaced, "Location Placed" %>
     <%= collection_select(:request, :locationplaced, @locations, :code, :code) %>
-  </div>
-  <div class="field">
-    <%= f.label :location_id %><br />
+
+    <%= f.label :location_id, "Pickup Location" %>
     <%= collection_select(:request, :location_id, @locations, :id, :code) %>
-  </div>
-  <div class="field">
-    <%= f.label :duedate %><br />
-    <%= f.text_field :duedate %>
-  </div>
-  <div class="field">
-    <%= f.label :bclitem %><br />
-    <%= f.text_field :bclitem %>
-  </div>
-  <div class="field">
-    <%= f.label :dateplaced %><br />
-    <%= f.date_select :dateplaced %>
-  </div>
+
+    <%= f.label :duedate, "Due Date" %>
+    <%= f.text_field :duedate, class: "span2" %>
+
+    <%= f.label :bclitem, "BCL Item ID" %>
+    <%= f.text_field :bclitem, class: "span2" %>
+
+    <%= f.label :dateplaced, "Date Placed" %>
+    <%= f.date_select :dateplaced, class: "span2" %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

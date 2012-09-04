@@ -1,25 +1,32 @@
+<% provide(:title, "Customer Details") %>
+<h1>Customer Details</h1>
 <p id="notice"><%= notice %></p>
+<div class="row">	
+	<aside>
+	</aside>
+	<div class="span8">
+		<p><b>User ID:</b> <%= @customer.userid%><br />
+			<small>(library card number)</small></p>
+		<p><b>Name:</b> <%= @customer.full_name %></p>
+		<p><b>Email:</b> <%= @customer.email %></p>
 
-<p>
-  <b>Userid:</b>
-  <%= @customer.userid %>
-</p>
-
-<p>
-  <b>Firstname:</b>
-  <%= @customer.firstname %>
-</p>
-
-<p>
-  <b>Lastname:</b>
-  <%= @customer.lastname %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @customer.email %>
-</p>
-
+		<div class="span8 offset2">
+		<% if @customer.requests.any? %>
+			<h3>Requests</h3>
+			<table class="table">
+				<tr>
+			    <th><%= link_to "Title", sort: "title" %></th>
+			    <th><%= link_to "Location Placed", sort: "locationplaced" %></th> 
+					<th><%= link_to "Date Placed", sort: "dateplaced" %></th>
+					<th>Current Status</th>
+			  </tr>			
+				<%= render @requests %>
+			</table>
+		<% end %>
+		</div>
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
+

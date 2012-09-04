@@ -1,13 +1,13 @@
 <% provide(:title, "Customers") %>
-<h1>Listing customers</h1>
+<h1>Customers</h1>
 
-<table>
+<%= link_to 'New Customer', new_customer_path, class: "btn btn-primary"%>
+<%= @customers.count %> customers
+<table class="table">
   <tr>
-    <th>Userid</th>
-    <th>Firstname</th>
-    <th>Lastname</th>
+    <th>User ID</th>
+    <th>Name</th>
     <th>Email</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -15,16 +15,12 @@
 <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.userid %></td>
-    <td><%= customer.firstname %></td>
-    <td><%= customer.lastname %></td>
+    <td><%= customer.full_name %></td>
     <td><%= customer.email %></td>
     <td><%= link_to 'Show', customer %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Customer', new_customer_path %>
+<%= will_paginate %>

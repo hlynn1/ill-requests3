@@ -1,0 +1,6 @@
+<tr>
+	<td><%= link_to request.title, request_path(request) %></td>
+	<td><%= request.locationplaced %></td>
+	<td><%= request.dateplaced %></td>
+	<td><%= request.current_status(request) %></td>
+</tr>
