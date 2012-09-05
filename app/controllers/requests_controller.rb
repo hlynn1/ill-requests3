@@ -1,11 +1,11 @@
 class RequestsController < ApplicationController
   
   def index
-    @requests = Request.where(:locationplaced => session[:current_location]).order(params[:sort]).paginate(page: params[:page])
+    @requests = Request.includes(:customer).where(:locationplaced => session[:current_location]).order(params[:sort]).paginate(page: params[:page])
   end
 
   def all
-    @requests = Request.order(params[:sort]).paginate(page: params[:page])
+    @requests = Request.includes(:customer).order(params[:sort]).paginate(page: params[:page])
   end
 
   def show
