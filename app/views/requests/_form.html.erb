@@ -12,9 +12,14 @@
   <% end %>
 
 		
-    <%= f.label :customer_id, "Customer" %>
-    <%= f.text_field :customer_id, class: "span2" %>
-
+    <%= f.label :customer_id, "Customer Number" %>
+    <%= f.text_field :customer_id, class: "span1" %> 
+		
+		<% if @customer.present? %>
+			<%= @customer.full_name %>
+		<% else %>
+		<% end %>
+		
     <%= f.label :oclcnum, "OCLC Number" %>
     <%= f.text_field :oclcnum, class: "span2" %>
 

@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.order('lastname').paginate(page: params[:page],:per_page => 20)
+    @customers = Customer.where('lastname LIKE :s OR firstname LIKE :s OR userID LIKE :s', :s => "%#{params[:search]}%").order('lastname').paginate(page: params[:page],:per_page => 20)
   end
 
   def show
@@ -23,6 +23,12 @@ class CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
+  end
+
+private
+
+  def store_location
+    session[:return_to] = request.url
   end
 
 end

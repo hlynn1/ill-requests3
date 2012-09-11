@@ -10,6 +10,7 @@
     <th>Email</th>
     <th></th>
     <th></th>
+		<th></th>
   </tr>
 
 <% @customers.each do |customer| %>
@@ -19,6 +20,7 @@
     <td><%= customer.email %></td>
     <td><%= link_to 'Show', customer %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+		<td><%= link_to 'New Request', new_request_path(:custid => customer.id)  %></td>
   </tr>
 <% end %>
 </table>

@@ -16,12 +16,17 @@ class RequestsController < ApplicationController
 
   def new
     @default_location = Location.find_by_code(session[:current_location])
-    unless params[:n].blank?
-      get_bib_info(params[:n])
+    session[:current_item] ||= params[:n]
+    unless session[:current_item].blank?
+      get_bib_info(session[:current_item])
       @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id,
-        :oclcnum => params[:n], :author => @author, :title => @title, :pub => @pub)
+        :oclcnum => session[:current_item], :author => @author, :title => @title, :pub => @pub, :customer_id => params[:custid])
     else
-      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id)
+      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id, :customer_id => params[:custid])
+    end
+    unless params[:custid].blank?
+      @customer = Customer.find(params[:custid])
+    else
     end
   end
 
@@ -39,6 +44,7 @@ class RequestsController < ApplicationController
     else
       render action: "new"
     end
+    session[:current_item] = nil
   end
 
   def update
