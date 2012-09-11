@@ -6,7 +6,6 @@ class Customer < ActiveRecord::Base
 
   validates :firstname, :lastname, presence: true
   validates :userid, presence: true, uniqueness: true
-  
 
   def full_name
     [firstname, lastname].join(' ')

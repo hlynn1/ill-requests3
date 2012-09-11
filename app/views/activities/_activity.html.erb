@@ -1,5 +1,5 @@
-<li>
-	<span class="status_id"><%= activity.status_id %></span>
-	<span class="status"><%= activity.status.name %></span>
-	<span class="timestamp"><%= activity.created_at.strftime("%D, %l:%M %P") %></span>
-</li>
+<tr>
+<!--	<span class="status_id"><%= activity.status_id %></span> -->
+	<td><span class="status"><%= activity.status.name %></span></td>
+	<td><span class="timestamp"><%= activity.created_at.in_time_zone("Central Time (US & Canada)").strftime("%D, %l:%M %P") %></span></td>
+</tr>

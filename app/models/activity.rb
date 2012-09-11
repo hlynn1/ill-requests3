@@ -5,5 +5,5 @@ class Activity < ActiveRecord::Base
   
   validates :request_id, presence: true
   default_scope order: 'activities.status_id ASC'
-
+  
 end

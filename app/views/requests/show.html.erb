@@ -18,9 +18,9 @@
 		<div class="span8 offset2">
 		<% if @request.activities.any? %>
 			<h3>Status Updates</h3>
-			<ol class="activities">
+			<table class="table activities">
 				<%= render @activities %>
-			</ol>
+			</table>
 		<% end %>
 		</div>
 	</div>

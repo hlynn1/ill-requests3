@@ -9,9 +9,9 @@ IllRequests::Application.routes.draw do
   resources :requests do
     resources :statuses, :activities
     resource :customers
-    member do
-      put 'receive'
-    end
+#    member do
+#      put 'receive'
+#    end
     get 'all', :on => :collection
   end
   
@@ -21,6 +21,8 @@ IllRequests::Application.routes.draw do
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete  
+  
+  match '/request/:id/receive', to: 'requests#receive', as: :receive_request, via: :put
 
 
   # The priority is based upon order of creation:

@@ -15,10 +15,15 @@ class Request < ActiveRecord::Base
   validates :location_id, presence: true
   validates :oclcnum, length: { maximum: 10 }
 
+  def self.by_column(sort)
+    includes(:customer).order(sort)
+  end
 
   def current_status(request)
     status = Activity.where("request_id = ?", id).maximum("status_id")
     @current_status = Status.find(status).name
   end
+  
+#  scope :active, current_status.where("#{@status} = ?", 1..4)
   
 end

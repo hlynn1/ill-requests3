@@ -1,36 +1,34 @@
 class RequestsController < ApplicationController
-  
+  before_filter :find_request, :only => [:show, :edit, :update, :receive]
+  before_filter :locations_dropdown, :only => [:new, :edit]
+
   def index
-    @requests = Request.includes(:customer).where(:locationplaced => session[:current_location]).order(params[:sort]).paginate(page: params[:page])
+    @requests = Request.where(:locationplaced => session[:current_location]).by_column(params[:sort]).paginate(page: params[:page])
   end
 
   def all
-    @requests = Request.includes(:customer).order(params[:sort]).paginate(page: params[:page])
+    @requests = Request.by_column(params[:sort]).paginate(page: params[:page])
   end
 
   def show
-    @request = Request.find(params[:id])
     @activities = @request.activities.all
   end
 
   def new
     @default_location = Location.find_by_code(session[:current_location])
-    @request = Request.new(:locationplaced => session[:current_location], 
-            :location_id => @default_location.id)
-    @locations = Location.all
+    unless params[:n].blank?
+      get_bib_info(params[:n])
+      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id,
+        :oclcnum => params[:n], :author => @author, :title => @title, :pub => @pub)
+    else
+      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id)
+    end
   end
 
   def edit
-    @request = Request.find(params[:id])
-    @locations = Location.all
   end
   
   def receive
-    @request = Request.find(params[:id])
-    @activities = @request.activities.all
-#    @request.update_attributes(params[:bclitem][:duedate])
-#    flash[:notice] = "Received!"
-#    redirect_to requests_path
   end
 
   def create
@@ -44,7 +42,6 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @request = Request.find(params[:id])
     if @request.update_attributes(params[:request])
       unless params[:new_status_id].blank?
         update_status(@request, params[:new_status_id])
@@ -55,4 +52,14 @@ class RequestsController < ApplicationController
     end
   end
 
-end
+  private
+  
+    def find_request
+      @request = Request.find(params[:id])
+    end
+
+    def locations_dropdown
+      @locations = Location.all
+    end
+
+ end
