@@ -6,6 +6,7 @@
 development:
   adapter: postgresql
   database: db/development_postgresql
+  host: localhost
   pool: 5
   timeout: 5000
 

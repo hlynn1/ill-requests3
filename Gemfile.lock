@@ -201,7 +201,7 @@ DEPENDENCIES
   guard-spork (= 0.3.2)
   jquery-rails (= 2.0.2)
   marc (= 0.5.0)
-  pg (= 0.12.2)
+  pg
   rails (= 3.2.7)
   rspec-rails (= 2.10.0)
   sass-rails (= 3.2.4)
