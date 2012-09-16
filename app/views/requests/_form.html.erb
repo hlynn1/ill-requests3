@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-		
+	<div class="row">
+	<div class="span8">
     <%= f.label :customer_id, "Customer Number" %>
     <%= f.text_field :customer_id, class: "span1" %> 
 		
@@ -24,14 +25,18 @@
     <%= f.text_field :oclcnum, class: "span2" %>
 
     <%= f.label :title %>
-    <%= f.text_field :title, class: "span4" %>
+    <%= f.text_field :title, class: "span6" %>
 
     <%= f.label :author %>
     <%= f.text_field :author, class: "span4" %>
 
     <%= f.label :pub, "Publication" %>
     <%= f.text_field :pub, class: "span4" %>
-
+	</div>
+	</div>
+	
+	<div class="row">
+	<div class="span2">
 		<%= f.label :locationplaced, "Location Placed" %>
     <%= collection_select(:request, :locationplaced, @locations, :code, :code) %>
 
@@ -43,10 +48,9 @@
 
     <%= f.label :bclitem, "BCL Item ID" %>
     <%= f.text_field :bclitem, class: "span2" %>
-
-    <%= f.label :dateplaced, "Date Placed" %>
-    <%= f.date_select :dateplaced, class: "span2" %>
-
+	</div>
+	</div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>

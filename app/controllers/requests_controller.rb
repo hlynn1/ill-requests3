@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(params[:request])
     if @request.save
-      update_status(@request, 1)
+      update_status(@request, 2)
       redirect_to @request, notice: 'Request was successfully created.'
     else
       render action: "new"
@@ -66,6 +66,10 @@ class RequestsController < ApplicationController
 
     def locations_dropdown
       @locations = Location.all
+    end
+
+    def update_status(request,new_status)
+      Activity.create!(:request_id => request.id, :status_id => new_status)
     end
 
  end

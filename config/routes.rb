@@ -2,7 +2,7 @@ IllRequests::Application.routes.draw do
 
   root to: 'static_pages#home'
   
-  resources :customers, :statuses, :activities, :locations, :users
+  resources :statuses, :customers, :activities, :locations, :users
   
   resources :sessions, only: [:new, :create, :destroy]
   

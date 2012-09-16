@@ -1,12 +1,13 @@
 <% provide(:title, "Customers") %>
 <h1>Customers</h1>
 
+
 <%= link_to 'New Customer', new_customer_path, class: "btn btn-primary"%>
 <%= @customers.count %> customers
 <table class="table">
   <tr>
-    <th>User ID</th>
-    <th>Name</th>
+    <th><%= link_to "User ID", sort: "userid" %></th>
+    <th><%= link_to "Name", sort: "lastname" %></th>
     <th>Email</th>
     <th></th>
     <th></th>
@@ -20,7 +21,7 @@
     <td><%= customer.email %></td>
     <td><%= link_to 'Show', customer %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-		<td><%= link_to 'New Request', new_request_path(:custid => customer.id)  %></td>
+		<td><%= link_to 'New Request', new_request_path(:custid => customer.id), class: 'btn btn-small' %></td>
   </tr>
 <% end %>
 </table>

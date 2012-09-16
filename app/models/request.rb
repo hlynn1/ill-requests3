@@ -4,10 +4,13 @@ class Request < ActiveRecord::Base
   
   belongs_to :customer
   belongs_to :location
+  belongs_to :status, :foreign_key => "current_status"
   has_many :activities
-  has_many :statuses, :through => :activities
+  
   
   accepts_nested_attributes_for :activities
+
+  after_touch :check_current_status
   
   validates :customer_id, presence: true
   validates :title, presence: true
@@ -15,15 +18,28 @@ class Request < ActiveRecord::Base
   validates :location_id, presence: true
   validates :oclcnum, length: { maximum: 10 }
 
+  scope :active, where(:current_status => [1..4])
+
+  def status_name(current_status)
+    if current_status?
+      @status = Status.find(current_status)
+      @status.name
+    else
+      "-"
+    end
+  end
+  
   def self.by_column(sort)
     includes(:customer).order(sort)
   end
 
-  def current_status(request)
-    status = Activity.where("request_id = ?", id).maximum("status_id")
-    @current_status = Status.find(status).name
-  end
+  private
   
-#  scope :active, current_status.where("#{@status} = ?", 1..4)
-  
+    def check_current_status
+      latest_activity = Activity.where("request_id = ?", id).maximum("status_id")
+      if self.current_status < latest_activity
+        self.update_column(:current_status, latest_activity)
+      end
+    end
+    
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120819193540) do
+ActiveRecord::Schema.define(:version => 20120915175710) do
 
   create_table "activities", :force => true do |t|
     t.integer  "request_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120819193540) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "dateplaced"
+    t.integer  "current_status"
   end
 
   create_table "statuses", :force => true do |t|

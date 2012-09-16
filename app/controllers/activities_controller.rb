@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
 
   def create
     request = Request.find(params[:request_id])
-    update_status(request, params[:new_status_id])
+    Activity.create!(:request_id => request.id, :status_id => params[:new_status_id])
     redirect_to request_path(request)
   end
   

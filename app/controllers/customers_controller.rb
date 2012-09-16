@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.where('lastname ILIKE :s OR firstname ILIKE :s OR userID ILIKE :s', :s => "%#{params[:search]}%").order('lastname').paginate(page: params[:page],:per_page => 20)
+    @customers = Customer.where('lastname ILIKE :s OR firstname ILIKE :s OR userID ILIKE :s', :s => "%#{params[:search]}%").order(params[:sort]).paginate(page: params[:page],:per_page => 20)
   end
 
   def show
