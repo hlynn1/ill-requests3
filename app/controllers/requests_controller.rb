@@ -3,11 +3,11 @@ class RequestsController < ApplicationController
   before_filter :locations_dropdown, :only => [:new, :edit]
 
   def index
-    @requests = Request.where(:locationplaced => session[:current_location]).by_column(params[:sort]).paginate(page: params[:page])
+    @requests = Request.here(session[:current_location]).by_column(params[:sort]).active.paginate(page: params[:page])
   end
 
   def all
-    @requests = Request.by_column(params[:sort]).paginate(page: params[:page])
+    @requests = Request.includes(:status).by_column(params[:sort]).paginate(page: params[:page])
   end
 
   def show

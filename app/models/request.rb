@@ -7,7 +7,6 @@ class Request < ActiveRecord::Base
   belongs_to :status, :foreign_key => "current_status"
   has_many :activities
   
-  
   accepts_nested_attributes_for :activities
 
   after_touch :check_current_status
@@ -19,16 +18,11 @@ class Request < ActiveRecord::Base
   validates :oclcnum, length: { maximum: 10 }
 
   scope :active, where(:current_status => [1..4])
-
-  def status_name(current_status)
-    if current_status?
-      @status = Status.find(current_status)
-      @status.name
-    else
-      "-"
-    end
-  end
   
+  def self.here(current_location)
+    where(:locationplaced => current_location).includes(:status)
+  end
+
   def self.by_column(sort)
     includes(:customer).order(sort)
   end

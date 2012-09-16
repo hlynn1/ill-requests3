@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @requests = Request.where(:customer_id => @customer.id).order('dateplaced DESC').paginate(page: params[:page])
+    @requests = Request.includes(:status).where(:customer_id => @customer.id).order(params[:sort]).paginate(page: params[:page])
   end
 
   def new

@@ -22,8 +22,8 @@
 				<tr>
 			    <th><%= link_to "Title", sort: "title" %></th>
 			    <th><%= link_to "Location Placed", sort: "locationplaced" %></th> 
+					<th><%= link_to "Current Status", sort: "current_status" %></th>
 					<th><%= link_to "Date Placed", sort: "dateplaced" %></th>
-					<th>Current Status</th>
 			  </tr>			
 				<%= render @requests %>
 			</table>
