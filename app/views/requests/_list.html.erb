@@ -1,10 +1,10 @@
 <table class="table">
   <tr>
-    <th><%= link_to "Customer", sort: "customers.lastname" %></th>
-    <th><%= link_to "Title", sort: "title" %></th>
-    <th><%= link_to "Location Placed", sort: "locationplaced" %></th> 
-		<th><%= link_to "Current Status", sort: "current_status" %></th>
-    <th><%= link_to "Due Date", sort: "duedate" %></th>
+    <th><%= sortable "customers.lastname", "Name" %></th>
+    <th><%= sortable "title", "Title" %></th>
+    <th><%= sortable "locationplaced", "Location Placed" %></th> 
+		<th><%= sortable "current_status", "Current Status" %></th>
+    <th><%= sortable "duedate", "Due Date" %></th>
     <th></th>
 		<th></th>
   </tr>

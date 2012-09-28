@@ -3,11 +3,11 @@ class RequestsController < ApplicationController
   before_filter :locations_dropdown, :only => [:new, :edit]
 
   def index
-    @requests = Request.here(session[:current_location]).by_column(params[:sort]).active.paginate(page: params[:page])
+    @requests = Request.here(session[:current_location]).by_column(params[:sort], params[:direction]).active.paginate(page: params[:page])
   end
 
   def all
-    @requests = Request.includes(:status).by_column(params[:sort]).paginate(page: params[:page])
+    @requests = Request.includes(:status).by_column(params[:sort], params[:direction]).paginate(page: params[:page])
   end
 
   def show
@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
 
   def new
     @default_location = Location.find_by_code(session[:current_location])
-    session[:current_item] ||= params[:n]
+    session[:current_item] ||= params[:n] 
     unless session[:current_item].blank?
       get_bib_info(session[:current_item])
       @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id,
@@ -71,5 +71,9 @@ class RequestsController < ApplicationController
     def update_status(request,new_status)
       Activity.create!(:request_id => request.id, :status_id => new_status)
     end
+
+    def sort_direction
+      params[:direction] ||= "asc"
+    end 
 
  end

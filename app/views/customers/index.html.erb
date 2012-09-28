@@ -6,8 +6,8 @@
 <%= @customers.count %> customers
 <table class="table">
   <tr>
-    <th><%= link_to "User ID", sort: "userid" %></th>
-    <th><%= link_to "Name", sort: "lastname" %></th>
+    <th><%= sortable "userid", "User ID" %></th>
+    <th><%= sortable "lastname", "Name" %></th>
     <th>Email</th>
     <th></th>
     <th></th>

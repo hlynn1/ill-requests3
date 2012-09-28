@@ -10,4 +10,10 @@ module ApplicationHelper
     end
   end
 
+  # Enables sortable column headings, toggle for asc/desc
+  def sortable(column, title)
+    direction = (column == params[:sort] && params[:direction] == "asc") ? "desc" : "asc"
+    link_to title, :sort => column, :direction => direction
+  end
+
 end

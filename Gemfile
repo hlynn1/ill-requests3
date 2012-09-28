@@ -10,6 +10,7 @@ gem 'simple-rss', '1.2.3'
 gem 'marc', '0.5.0'
 gem 'worldcat', '0.0.1'
 gem 'ransack'
+gem 'chronic'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -2,7 +2,7 @@
 
 <%= form_tag customers_path, method: 'get' do %>
 	<p>
-		<%= text_field_tag :search, params[:search], class: "span4" %>
+		<%= text_field_tag :search, params[:search], :autofocus => true, class: "span4" %>
 		<%= submit_tag "Customer Search", name: nil %>
 	</p>
 <% end %>

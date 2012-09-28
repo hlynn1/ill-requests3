@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.where('lastname ILIKE :s OR firstname ILIKE :s OR userID ILIKE :s', :s => "%#{params[:search]}%").order(params[:sort]).paginate(page: params[:page],:per_page => 20)
+    @customers = Customer.where('lastname ILIKE :s OR firstname ILIKE :s OR userID ILIKE :s', :s => "%#{params[:search]}%").order("#{params[:sort]} #{params[:direction]}").paginate(page: params[:page],:per_page => 20)
   end
 
   def show
@@ -19,6 +19,11 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(params[:customer])
+    if @customer.save
+      redirect_to @customer, notice: 'Customer was successfully created.'
+    else
+      render action: "new"
+    end
   end
 
   def update

@@ -13,7 +13,7 @@
 			<p><b>Location Placed:</b> <%= @request.locationplaced %></p>
 			<p><b>Pickup Location:</b> <%= @request.location_id %></p>
 			<%= form_for(@request) do |f| %>
-			<p><b>Due Date:</b> <%= f.date_select :duedate %></p>
+			<p><b>Due Date:</b> <%= f.text_field :chronic_duedate, :autofocus => true %></p>
 			<p><b>BCL Item ID:</b> <%= f.text_field :bclitem %></p>
 
 			<div class="offset2">
