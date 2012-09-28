@@ -24,7 +24,7 @@ class RequestsController < ApplicationController
     unless session[:current_item].blank?
       get_bib_info(session[:current_item])
       @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id,
-        :oclcnum => session[:current_item], :author => @author, :title => @title, :pub => @pub, :customer_id => @customer.id)
+        :oclcnum => session[:current_item], :author => @author, :title => @title, :pub => @pub, :customer_id => params[:custid])
     else
       @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id, :customer_id => params[:custid])
     end
