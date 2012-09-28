@@ -17,16 +17,16 @@ class RequestsController < ApplicationController
   def new
     @default_location = Location.find_by_code(session[:current_location])
     session[:current_item] ||= params[:n] 
-    unless session[:current_item].blank?
-      get_bib_info(session[:current_item])
-      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id,
-        :oclcnum => session[:current_item], :author => @author, :title => @title, :pub => @pub, :customer_id => params[:custid])
-    else
-      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id, :customer_id => params[:custid])
-    end
     unless params[:custid].blank?
       @customer = Customer.find(params[:custid])
     else
+    end
+    unless session[:current_item].blank?
+      get_bib_info(session[:current_item])
+      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id,
+        :oclcnum => session[:current_item], :author => @author, :title => @title, :pub => @pub, :customer_id => @customer.id)
+    else
+      @request = Request.new(:locationplaced => session[:current_location], :location_id => @default_location.id, :customer_id => params[:custid])
     end
   end
 
