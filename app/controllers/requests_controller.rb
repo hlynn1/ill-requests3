@@ -58,6 +58,12 @@ class RequestsController < ApplicationController
     end
   end
 
+  def destroy
+    Request.find(params[:id]).destroy
+    flash[:success] = "Request destroyed."
+    redirect_to requests_url
+  end
+
   private
   
     def find_request

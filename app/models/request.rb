@@ -7,7 +7,7 @@ class Request < ActiveRecord::Base
   belongs_to :customer
   belongs_to :location
   belongs_to :status, :foreign_key => "current_status"
-  has_many :activities
+  has_many :activities, :dependent => :destroy
   
   accepts_nested_attributes_for :activities
 
