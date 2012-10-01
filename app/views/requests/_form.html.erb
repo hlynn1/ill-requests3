@@ -14,7 +14,7 @@
 	<div class="row">
 	<div class="span8">
     <%# f.label :customer_id, "Customer Number" %>
-	  <%= hidden_field :customer_id, :customer_id %>
+	  <%= hidden_field :customer_id, :value => customer_id %>
     <%# f.text_field :customer_id, class: "span1" %> 
 		
 		<% if @customer.present? %>
