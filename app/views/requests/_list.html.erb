@@ -1,7 +1,9 @@
 <table class="table">
   <tr>
-    <th><%= sortable "customers.lastname", "Name" %></th>
-    <th><%= sortable "title", "Title" %></th>
+		<% if signed_in? %>
+			<th><%= sortable "customers.lastname", "Name" %></th>
+		<% end %>
+		<th><%= sortable "title", "Title" %></th>
     <th><%= sortable "locationplaced", "Location Placed" %></th> 
 		<th><%= sortable "current_status", "Current Status" %></th>
     <th><%= sortable "duedate", "Due Date" %></th>
@@ -11,17 +13,28 @@
 
 <% @requests.each do |request| %>
 	<tr>
-		<td><%= link_to request.customer.full_name, customer_path(request.customer_id) %></td>
+		<% if signed_in? %>
+			<td><%= link_to request.customer.full_name, customer_path(request.customer_id) %></td>
+		<% end %>
 		<td><%= link_to request.title, request_path(request) %></td>
 		<td><%= request.locationplaced %></td>
 		<td><%= request.status.name %></td>
 		<% if request.duedate? %>
-			<td><%= request.duedate.strftime("%D") %></td>
+			<% if request.overdue? and request.current_status < 4 %>
+				<td><span class="overdue"><%= request.duedate.strftime("%D") %></span></td>
+			<% else %>
+				<td><%= request.duedate.strftime("%D") %></td>
+			<% end %>
 		<% else %>
 			<td></td>
 		<% end %>
-		<td><%= link_to 'Receive', receive_request_path(request), method: "put", class: "btn btn-small" %></td>
-		<td><%= link_to 'Return', request_activities_path(request, :new_status_id => 4), method: "post", class: "btn btn-small" %></td>
+		<% if signed_in? %>
+			<td><%= link_to 'Receive', receive_request_path(request), method: "put", class: "btn btn-small" %></td>
+			<td><%= link_to 'Return', request_activities_path(request, :new_status_id => 4), method: "post", class: "btn btn-small" %></td>
+		<% else %>
+			<td></td>
+			<td></td>
+		<% end %>
 	</tr>
 <% end %>
 

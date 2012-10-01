@@ -9,18 +9,14 @@
     <th><%= sortable "userid", "User ID" %></th>
     <th><%= sortable "lastname", "Name" %></th>
     <th>Email</th>
-    <th></th>
-    <th></th>
 		<th></th>
   </tr>
 
 <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.userid %></td>
-    <td><%= customer.full_name %></td>
+    <td><%= link_to customer.full_name, customer %></td>
     <td><%= customer.email %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
 		<td><%= link_to 'New Request', new_request_path(:custid => customer.id), class: 'btn btn-small' %></td>
   </tr>
 <% end %>

@@ -1,7 +1,8 @@
 class CustomersController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   def index
-    @customers = Customer.where('lastname ILIKE :s OR firstname ILIKE :s OR userID ILIKE :s', :s => "%#{params[:search]}%").order("#{params[:sort]} #{params[:direction]}").paginate(page: params[:page],:per_page => 20)
+    @customers = Customer.where('lastname ILIKE :s OR firstname ILIKE :s OR userID ILIKE :s', :s => "%#{params[:search]}%").order(sort_column + ' ' + sort_direction).paginate(page: params[:page],:per_page => 20)
   end
 
   def show
@@ -34,6 +35,14 @@ private
 
   def store_location
     session[:return_to] = request.url
+  end
+
+  def sort_direction
+    params[:direction] ||= "asc"
+  end 
+
+  def sort_column
+    params[:sort] ||= "lastname"
   end
 
 end

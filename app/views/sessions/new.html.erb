@@ -6,7 +6,7 @@
 		<%= form_for(:session, url: sessions_path) do |f| %>
 		
 		<%= f.label :locationcode, "Location" %>
-		<%= f.text_field :locationcode %>
+		<%= f.text_field :locationcode, :autofocus => true %>
 		
 		<%= f.label :password %>
 		<%= f.password_field :password %>

@@ -1,13 +1,15 @@
 class RequestsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_filter :find_request, :only => [:show, :edit, :update, :receive]
   before_filter :locations_dropdown, :only => [:new, :edit]
+  before_filter :staff_only, :only => [:new, :receive, :edit]
 
   def index
-    @requests = Request.here(session[:current_location]).by_column(params[:sort], params[:direction]).active.paginate(page: params[:page])
+    @requests = Request.here(session[:current_location]).by_column(sort_column, sort_direction).active.paginate(page: params[:page])
   end
 
   def all
-    @requests = Request.includes(:status).by_column(params[:sort], params[:direction]).paginate(page: params[:page])
+    @requests = Request.includes(:status).by_column(sort_column, sort_direction).paginate(page: params[:page])
   end
 
   def show
@@ -82,4 +84,13 @@ class RequestsController < ApplicationController
       params[:direction] ||= "asc"
     end 
 
- end
+    def sort_column
+      params[:sort] ||= "current_status"
+    end
+
+    def staff_only
+      unless signed_in?
+        redirect_to signin_url, notice: "Sign in, please!"
+      end
+    end
+end
