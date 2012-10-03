@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+$(document).ready(function() {
+	$('#checkOclc').click(function(event) {
+		var n=document.getElementById("request_oclcnum").value,x=/[0-9]{6,}/;
+		var y=x.test(n);
+		if (y!=false) {
+			url="/requests/new?n="+encodeURIComponent(n);
+			window.location.assign(url);
+		}
+	});
+});

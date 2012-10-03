@@ -21,7 +21,6 @@ class RequestsController < ApplicationController
     session[:current_item] ||= params[:n] 
     unless params[:custid].blank?
       @customer = Customer.find(params[:custid])
-    else
     end
     unless session[:current_item].blank?
       get_bib_info(session[:current_item])
