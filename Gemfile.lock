@@ -183,7 +183,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    will_paginate (3.0.3)
+    will_paginate (3.2.1)
     worldcat (0.0.1)
       json (>= 1.4.6)
       marc (>= 0.3.3)
